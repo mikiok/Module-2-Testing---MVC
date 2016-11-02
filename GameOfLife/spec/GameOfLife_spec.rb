@@ -29,7 +29,7 @@ end
 describe Board do
 
     before :each do
-        @board = Board.new "saved_board.txt"
+        @board = Board.new "testing_board.txt"
     end
 
     describe '#load_grid?' do
@@ -54,6 +54,45 @@ describe Board do
     describe "#empty_grid?" do
         it "Check if the grid has the same value in every item (should return false)" do
             expect(@board.empty_grid?).to be false
+        end
+    end
+
+    describe "#horizontal_neighbours" do
+        it "look for the horizontal neighbours of a given position(cell)" do
+            expect(@board.horizontal_neighbours(@board.get_states, 1, 1)).to eq([1,1])
+        end
+    end
+
+    describe "#vertical_neighbours" do
+        it "look for the vertical neighbours of a given position(cell)" do
+            expect(@board.vertical_neighbours(@board.get_states, 1, 1)).to eq([0,0])
+        end
+    end
+
+    describe "#diagonal_neighbours" do
+        it "look for the diagonal neighbours of a given position(cell)" do
+            expect(@board.diagonal_neighbours(@board.get_states, 1, 1)).to eq([0,0,1,0])
+        end
+    end
+
+    describe "#get_neighbours" do
+        it "Get all the neighbours of a given position(cell)" do
+            expect(@board.get_neighbours(@board.get_states, 1, 1)).to eq([1,1,0,0,0,0,1,0])
+        end
+    end
+
+    describe "#get_states" do
+        it "Get a grid with the states of the cells" do
+            expect(@board.get_states).to eq([[0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+                                            [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                                            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                                            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
         end
     end
 end
