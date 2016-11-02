@@ -14,11 +14,7 @@ class Board
 	def print_grid
 		@grid.each do |row|
 			row.each do |item|
-				if item.state == 1
-					print "#{item.state} ".red
-				else
-					print "#{item.state} "
-				end
+				(item.state == 1)? (print "█".red) : (print " ")
 			end
 			print "\n"
 		end
